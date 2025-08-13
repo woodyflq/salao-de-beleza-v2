@@ -4,8 +4,8 @@ from datetime import datetime
 
 class AppointmentForm(forms.ModelForm):
     client = forms.CharField(label="Cliente", max_length=255, widget=forms.TextInput(attrs={'id': 'client-search', 'class': 'w-full px-4 py-2 border rounded-lg', 'data-id': ''}))
-    service = forms.ChoiceField(label="Serviço", choices=[(s.id, s.name) for s in Service.objects.all()[:100]])
-    team_member = forms.ChoiceField(label="Membro da Equipe", choices=[(tm.id, tm.name) for tm in TeamMember.objects.all()[:100]])
+    service = forms.ChoiceField(label="Serviço")
+    team_member = forms.ChoiceField(label="Membro da Equipe")
 
     class Meta:
         model = Appointment
@@ -19,13 +19,11 @@ class AppointmentForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        # Define a data e hora atual como padrão, sem segundos
         current_datetime = datetime.now().replace(microsecond=0).strftime('%Y-%m-%dT%H:%M')
         self.fields['appointment_time'].initial = current_datetime
         self.fields['appointment_time'].required = True
-        # Limita as opções iniciais
-        self.fields['service'].choices = [(s.id, s.name) for s in Service.objects.all()[:100]]
-        self.fields['team_member'].choices = [(tm.id, tm.name) for tm in TeamMember.objects.all()[:100]]
+        self.fields['service'].choices = [('', 'Selecione um serviço')] + [(s.id, s.name) for s in Service.objects.all()[:100]]
+        self.fields['team_member'].choices = [('', 'Selecione um membro')] + [(tm.id, tm.name) for tm in TeamMember.objects.all()[:100]]
 
     def clean(self):
         cleaned_data = super().clean()
@@ -33,7 +31,6 @@ class AppointmentForm(forms.ModelForm):
         service_id = self.data.get('service')
         team_member_id = self.data.get('team_member')
 
-        # Valida e converte os IDs pra instâncias
         if client_id:
             try:
                 cleaned_data['client'] = Client.objects.get(id=client_id)
