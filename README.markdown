@@ -11,7 +11,7 @@ Esse aqui é um sistema feito com Django pra gerenciar os agendamentos de um sal
 ### 1. Baixa o Código
 Primeiro, clona o repositório pra sua máquina:
 ```bash
-git clone https://github.com/woodyflq/salao-de-beleza.git
+git clone https://github.com/woodyflq/salao-de-beleza-v2.git
 cd salao-de-beleza
 ```
 Isso pega tudo que tá no GitHub e joga na sua pasta.
@@ -82,3 +82,4 @@ Ele cria clientes, serviços, equipe e agendamentos.
 - **Serviços por Profissional no Agendamento**: Quando a gente for fazer um agendamento, seria massa se, ao selecionar um profissional, aparecessem só os serviços que ele sabe fazer. Assim, evita escolher algo que ele não domina.
 
 - **Mais de Um Serviço por Profissional**: Hoje cada profissional tem uma especialidade só, mas eu quero permitir que ele possa fazer mais de um serviço. Tipo, um cara que faz corte e barba, por exemplo. Isso ia dar mais flexibilidade pro agendamento.
+
