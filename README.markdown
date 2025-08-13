@@ -39,6 +39,7 @@ pip install -r requirements.txt
 ### 4. Configura o Banco de Dados
 Deixa o banco de dados pronto com os comandos de migração:
 ```bash
+python manage.py makemigrations
 python manage.py migrate
 ```
 Isso cria as tabelas que o sistema precisa.
@@ -82,4 +83,5 @@ Ele cria clientes, serviços, equipe e agendamentos.
 - **Serviços por Profissional no Agendamento**: Quando a gente for fazer um agendamento, seria massa se, ao selecionar um profissional, aparecessem só os serviços que ele sabe fazer. Assim, evita escolher algo que ele não domina.
 
 - **Mais de Um Serviço por Profissional**: Hoje cada profissional tem uma especialidade só, mas eu quero permitir que ele possa fazer mais de um serviço. Tipo, um cara que faz corte e barba, por exemplo. Isso ia dar mais flexibilidade pro agendamento.
+
 
